@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MockJet &mdash; Search flights</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">
+        <span class="brand-mark">M</span>
+        <span>
+          <span class="brand-name">MockJet</span><br />
+          <span class="header-tagline"
+            >FLIGHT SEARCH & BOOKING &mdash; DEMO</span
+          >
+        </span>
+      </a>
+      <div class="auth-area" id="auth-area" data-testid="auth-area"></div>
+    </header>
+
+    <main class="page-wrap">
+      <section class="hero" aria-label="Flight booking overview">
+        <div class="hero-copy">
+          <p class="eyebrow">Premium travel, simplified</p>
+          <h1>Where are you flying?</h1>
+          <p>
+            A mock booking flow built to practice test automation against
+            &mdash; search, select, review, and book.
+          </p>
+        </div>
+        <div class="hero-meta" aria-label="Key details">
+          <div class="hero-stat">
+            <span class="hero-stat-label">Popular routes</span>
+            <strong>120+</strong>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-label">Avg. savings</span>
+            <strong>18%</strong>
+          </div>
+        </div>
+      </section>
+
+      <form
+        class="panel search-panel stack"
+        id="search-form"
+        data-testid="search-form"
+        novalidate
+      >
+        <div
+          class="segmented"
+          data-testid="trip-type"
+          role="radiogroup"
+          aria-label="Trip type"
+        >
+          <input
+            type="radio"
+            name="tripType"
+            id="trip-oneway"
+            value="oneway"
+            data-testid="trip-oneway"
+          />
+          <label for="trip-oneway">One way</label>
+          <input
+            type="radio"
+            name="tripType"
+            id="trip-roundtrip"
+            value="roundtrip"
+            data-testid="trip-roundtrip"
+            checked
+          />
+          <label for="trip-roundtrip">Round trip</label>
+        </div>
+
+        <div class="od-row">
+          <div class="field" id="from-field">
+            <label for="from-input">From</label>
+            <input
+              type="text"
+              id="from-input"
+              data-testid="from-input"
+              autocomplete="off"
+              placeholder="City or airport"
+              aria-describedby="from-error"
+            />
+            <ul
+              class="autocomplete-list"
+              id="from-list"
+              data-testid="from-suggestions"
+              role="listbox"
+            ></ul>
+            <span class="error-text" id="from-error"
+              >Choose a departure airport.</span
+            >
+          </div>
+
+          <button
+            type="button"
+            class="swap-btn"
+            id="swap-btn"
+            data-testid="swap-airports"
+            aria-label="Swap origin and destination"
+          >
+            &#8644;
+          </button>
+
+          <div class="field" id="to-field">
+            <label for="to-input">To</label>
+            <input
+              type="text"
+              id="to-input"
+              data-testid="to-input"
+              autocomplete="off"
+              placeholder="City or airport"
+              aria-describedby="to-error"
+            />
+            <ul
+              class="autocomplete-list"
+              id="to-list"
+              data-testid="to-suggestions"
+              role="listbox"
+            ></ul>
+            <span class="error-text" id="to-error"
+              >Choose a destination airport.</span
+            >
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field datepicker-wrap" id="depart-field">
+            <label id="depart-label" for="depart-trigger">Depart</label>
+            <input
+              type="text"
+              class="dp-trigger placeholder"
+              id="depart-trigger"
+              aria-labelledby="depart-label"
+              placeholder="Select date"
+            />
+            <div class="dp-popover" id="depart-popover"></div>
+            <span class="error-text" id="depart-error"
+              >Choose a departure date.</span
+            >
+          </div>
+
+          <div class="field datepicker-wrap" id="return-field">
+            <label id="return-label" for="return-trigger">Return</label>
+            <input
+              type="text"
+              class="dp-trigger placeholder"
+              id="return-trigger"
+              aria-labelledby="return-label"
+              placeholder="Select date"
+            />
+            <div class="dp-popover" id="return-popover"></div>
+            <span class="error-text" id="return-error"
+              >Choose a return date.</span
+            >
+          </div>
+
+          <div class="field" id="passengers-field" style="position: relative">
+            <label id="passengers-label">Passengers &amp; cabin</label>
+            <button
+              type="button"
+              class="dp-trigger"
+              id="passengers-trigger"
+              data-testid="passengers-trigger"
+              aria-labelledby="passengers-label"
+            >
+              1 Adult, Economy
+            </button>
+            <div
+              class="dp-popover"
+              id="passengers-popover"
+              data-testid="passengers-popover"
+              style="width: 260px"
+            >
+              <div class="stepper" data-testid="stepper-adults">
+                <span>Adults</span>
+                <div class="stepper-controls">
+                  <button
+                    type="button"
+                    class="stepper-btn"
+                    data-testid="adults-decrement"
+                    aria-label="Decrease adults"
+                  >
+                    &minus;
+                  </button>
+                  <span class="stepper-count" data-testid="adults-count"
+                    >1</span
+                  >
+                  <button
+                    type="button"
+                    class="stepper-btn"
+                    data-testid="adults-increment"
+                    aria-label="Increase adults"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="stepper" data-testid="stepper-children">
+                <span>Children</span>
+                <div class="stepper-controls">
+                  <button
+                    type="button"
+                    class="stepper-btn"
+                    data-testid="children-decrement"
+                    aria-label="Decrease children"
+                  >
+                    &minus;
+                  </button>
+                  <span class="stepper-count" data-testid="children-count"
+                    >0</span
+                  >
+                  <button
+                    type="button"
+                    class="stepper-btn"
+                    data-testid="children-increment"
+                    aria-label="Increase children"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="field" style="margin-top: 10px">
+                <label for="cabin-select">Cabin class</label>
+                <select id="cabin-select" data-testid="cabin-select">
+                  <option value="economy">Economy</option>
+                  <option value="premium">Premium Economy</option>
+                  <option value="business">Business</option>
+                </select>
+              </div>
+              <button
+                type="button"
+                class="btn btn-secondary btn-block"
+                id="passengers-done"
+                data-testid="passengers-done"
+                style="margin-top: 12px"
+              >
+                Done
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          id="search-submit"
+          data-testid="search-submit"
+        >
+          Search flights
+        </button>
+      </form>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a
+          href="/terms.html"
+          target="_blank"
+          rel="noopener"
+          data-testid="footer-terms-link"
+          >Terms</a
+        >
+        <a
+          href="/fare-rules.html"
+          target="_blank"
+          rel="noopener"
+          data-testid="footer-fare-rules-link"
+          >Fare rules</a
+        >
+        <a
+          href="/partner-baggage.html"
+          target="_blank"
+          rel="noopener"
+          data-testid="footer-baggage-link"
+          >Baggage policy</a
+        >
+      </div>
+      <p class="footer-disclaimer">
+        MockJet is a fictional demo site built for test-automation practice. No
+        real flights are sold.
+      </p>
+      <p class="footer-copyright">&copy; 2026 MockJet. All rights reserved.</p>
+    </footer>
+
+    <script src="/js/state.js"></script>
+    <script src="/js/datepicker.js"></script>
+    <script src="/js/search.js"></script>
+    <script src="/js/auth.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", renderAuthSlot);
+    </script>
+  </body>
+</html>

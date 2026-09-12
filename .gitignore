@@ -1,0 +1,104 @@
+# =========================
+
+# Dependencies
+
+# =========================
+
+node_modules/
+
+# =========================
+
+# Playwright generated files
+
+# =========================
+
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Saved authentication state
+
+playwright/.auth/
+
+# =========================
+
+# Test artifacts / downloads
+
+# =========================
+
+/downloads/
+artifacts/
+screenshots/
+videos/
+traces/
+
+# =========================
+
+# Environment variables / secrets
+
+# =========================
+
+.env
+.env.*
+!.env.example
+
+# =========================
+
+# Logs
+
+# =========================
+
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+
+# TypeScript / build output
+
+# =========================
+
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# =========================
+
+# IDE / editor files
+
+# =========================
+
+.vscode/*
+!.vscode/settings.json
+.idea/
+
+# =========================
+
+# OS-generated files
+
+# =========================
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+
+# Temporary files
+
+# =========================
+
+*.tmp
+*.temp
+.cache/
+temp/
+tmp/
+
+# =========================
+# Markdown docs (commit once project is complete)
+# =========================
+*.md

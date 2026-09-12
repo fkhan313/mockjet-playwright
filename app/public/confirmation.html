@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MockJet &mdash; Booking confirmed</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">
+        <span class="brand-mark">M</span>
+        <span>
+          <span class="brand-name">MockJet</span><br />
+          <span class="header-tagline"
+            >FLIGHT SEARCH & BOOKING &mdash; DEMO</span
+          >
+        </span>
+      </a>
+      <div class="auth-area" id="auth-area" data-testid="auth-area"></div>
+    </header>
+
+    <main class="page-wrap">
+      <div class="progress-steps" data-testid="progress-steps">
+        <span class="step done" data-testid="step-search">1. Search</span>
+        <span class="sep">/</span>
+        <span class="step done" data-testid="step-review">2. Review</span>
+        <span class="sep">/</span>
+        <span class="step done" data-testid="step-pay">3. Pay</span>
+        <span class="sep">/</span>
+        <span class="step active" data-testid="step-confirm"
+          >4. Confirmation</span
+        >
+      </div>
+
+      <div
+        id="no-booking"
+        class="panel"
+        style="display: none"
+        data-testid="no-booking"
+      >
+        <h2>No booking found</h2>
+        <p>It looks like there's no completed booking in this session.</p>
+        <a class="btn btn-primary" href="/">Start a new search</a>
+      </div>
+
+      <div id="confirmation-content" style="display: none">
+        <div class="confirm-hero">
+          <div style="font-size: 2rem">&#10003;</div>
+          <h2 style="color: #fff">You're booked!</h2>
+          <p style="color: var(--amber-300); margin-bottom: 0">
+            Confirmation code
+          </p>
+          <div
+            class="confirm-code split-flap-reveal"
+            id="confirmation-code"
+            data-testid="confirmation-code"
+          ></div>
+          <div class="qr-box" aria-hidden="true" id="qr-box"></div>
+          <div class="confirm-actions">
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="download-btn"
+              data-testid="download-eticket"
+            >
+              Download e-ticket
+            </button>
+            <button
+              type="button"
+              class="btn btn-ghost"
+              id="print-btn"
+              data-testid="print-itinerary"
+              style="border-color: rgba(255, 255, 255, 0.3); color: #fff"
+            >
+              Print itinerary
+            </button>
+            <button
+              type="button"
+              class="btn btn-ghost"
+              id="email-btn"
+              data-testid="email-itinerary"
+              style="border-color: rgba(255, 255, 255, 0.3); color: #fff"
+            >
+              Email itinerary
+            </button>
+          </div>
+        </div>
+
+        <div id="itinerary-summary" data-testid="itinerary-summary"></div>
+
+        <div
+          id="tier-benefit"
+          data-testid="tier-benefit"
+          class="panel"
+          style="display: none; margin-top: 16px"
+        ></div>
+
+        <div class="panel" style="margin-top: 16px">
+          <h2>Passengers</h2>
+          <div id="passenger-summary" data-testid="passenger-summary"></div>
+        </div>
+
+        <div
+          id="special-requests-panel"
+          class="panel"
+          style="display: none; margin-top: 16px"
+          data-testid="special-requests-panel"
+        >
+          <h2>Special requests</h2>
+          <p
+            id="special-requests-text"
+            data-testid="special-requests-text"
+            style="margin: 0"
+          ></p>
+        </div>
+
+        <div
+          class="panel"
+          style="
+            margin-top: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <div>
+            <div class="hint">Total charged</div>
+            <div
+              class="mono"
+              style="font-size: 1.3rem; font-weight: 700"
+              id="confirm-total"
+              data-testid="confirm-total"
+            ></div>
+          </div>
+          <a class="btn btn-secondary" href="/" data-testid="book-another"
+            >Book another trip</a
+          >
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a
+          href="/terms.html"
+          target="_blank"
+          rel="noopener"
+          data-testid="footer-terms-link"
+          >Terms</a
+        >
+        <a
+          href="/fare-rules.html"
+          target="_blank"
+          rel="noopener"
+          data-testid="footer-fare-rules-link"
+          >Fare rules</a
+        >
+        <a
+          href="/partner-baggage.html"
+          target="_blank"
+          rel="noopener"
+          data-testid="footer-baggage-link"
+          >Baggage policy</a
+        >
+      </div>
+      <p class="footer-disclaimer">
+        MockJet is a fictional demo site built for test-automation practice. No
+        real flights are sold.
+      </p>
+      <p class="footer-copyright">&copy; 2026 MockJet. All rights reserved.</p>
+    </footer>
+
+    <script src="/js/state.js"></script>
+    <script src="/js/confirmation.js"></script>
+    <script src="/js/auth.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", renderAuthSlot);
+    </script>
+  </body>
+</html>

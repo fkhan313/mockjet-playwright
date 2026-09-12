@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MockJet &mdash; My bookings</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">
+        <span class="brand-mark">M</span>
+        <span>
+          <span class="brand-name">MockJet</span><br />
+          <span class="header-tagline"
+            >FLIGHT SEARCH & BOOKING &mdash; DEMO</span
+          >
+        </span>
+      </a>
+      <div class="auth-area" id="auth-area" data-testid="auth-area"></div>
+    </header>
+
+    <main class="page-wrap">
+      <div class="page-intro panel">
+        <div>
+          <span class="eyebrow eyebrow-soft">Account</span>
+          <h1 style="margin-bottom: 2px">My bookings</h1>
+        </div>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          id="export-excel-btn"
+          data-testid="export-excel-btn"
+        >
+          Export to Excel
+        </button>
+      </div>
+
+      <p class="hint account-subtitle" style="margin: 0 0 18px">
+        Everything booked while signed in shows up here. Guest bookings aren't
+        saved to an account.
+      </p>
+
+      <div id="loading-skeleton">
+        <div class="skeleton skeleton-card"></div>
+        <div class="skeleton skeleton-card"></div>
+      </div>
+
+      <div
+        class="bookings-table-wrap"
+        id="bookings-table-wrap"
+        data-testid="bookings-table-wrap"
+        style="display: none"
+      >
+        <table class="bookings-table" data-testid="bookings-table">
+          <thead>
+            <tr>
+              <th>Confirmation</th>
+              <th>Route</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Total</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="bookings-tbody" data-testid="bookings-tbody"></tbody>
+        </table>
+      </div>
+
+      <div
+        class="panel account-empty"
+        id="account-empty"
+        style="display: none"
+        data-testid="account-empty"
+      >
+        <h3>No bookings yet</h3>
+        <p>Search for a flight and book while signed in to see it here.</p>
+        <a class="btn btn-primary" href="/">Search flights</a>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a
+          href="/terms.html"
+          target="_blank"
+          rel="noopener"
+          data-testid="footer-terms-link"
+          >Terms</a
+        >
+        <a
+          href="/fare-rules.html"
+          target="_blank"
+          rel="noopener"
+          data-testid="footer-fare-rules-link"
+          >Fare rules</a
+        >
+        <a
+          href="/partner-baggage.html"
+          target="_blank"
+          rel="noopener"
+          data-testid="footer-baggage-link"
+          >Baggage policy</a
+        >
+      </div>
+      <p class="footer-disclaimer">
+        MockJet is a fictional demo site built for test-automation practice. No
+        real flights are sold.
+      </p>
+      <p class="footer-copyright">&copy; 2026 MockJet. All rights reserved.</p>
+    </footer>
+
+    <script src="/js/state.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/bookings.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", renderAuthSlot);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MockJet &mdash; My account</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">
+        <span class="brand-mark">M</span>
+        <span>
+          <span class="brand-name">MockJet</span><br />
+          <span class="header-tagline"
+            >FLIGHT SEARCH & BOOKING &mdash; DEMO</span
+          >
+        </span>
+      </a>
+      <div class="auth-area" id="auth-area" data-testid="auth-area"></div>
+    </header>
+
+    <main class="page-wrap">
+      <div class="page-intro panel">
+        <div>
+          <span class="eyebrow eyebrow-soft">Account</span>
+          <h1 style="margin-bottom: 2px">My account</h1>
+        </div>
+        <span
+          id="loyalty-tier-badge"
+          data-testid="loyalty-tier-badge"
+          class="tier-badge"
+          style="display: none"
+        ></span>
+      </div>
+
+      <p class="hint account-subtitle" style="margin: 0 0 18px">
+        These details are saved to your account and used to pre-fill your
+        booking details next time.
+      </p>
+
+      <form
+        id="profile-form"
+        data-testid="profile-form"
+        novalidate
+        style="display: none"
+      >
+        <div class="panel stack" style="margin-bottom: 16px">
+          <h2>Your details</h2>
+          <div class="row">
+            <div class="field" id="profile-email-field">
+              <label for="profile-email">Email</label>
+              <input
+                type="email"
+                id="profile-email"
+                data-testid="profile-email"
+                disabled
+              />
+              <span class="hint"
+                >Email can't be changed &mdash; it's your sign-in.</span
+              >
+            </div>
+            <div class="field" id="profile-name-field">
+              <label for="profile-name">Full name</label>
+              <input
+                type="text"
+                id="profile-name"
+                data-testid="profile-name"
+                placeholder="As on passport"
+              />
+              <span class="error-text">Enter your full name.</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field" id="profile-phone-field">
+              <label for="profile-phone">Phone</label>
+              <input
+                type="tel"
+                id="profile-phone"
+                data-testid="profile-phone"
+                placeholder="(555) 555-5555"
+              />
+              <span class="error-text">Enter a valid phone number.</span>
+            </div>
+            <div class="field datepicker-wrap" id="profile-dob-field">
+              <label id="profile-dob-label" for="profile-dob-trigger"
+                >Date of birth</label
+              >
+              <input
+                type="text"
+                class="dp-trigger placeholder"
+                id="profile-dob-trigger"
+                aria-labelledby="profile-dob-label"
+                placeholder="Select date (e.g. 05/12/1974)"
+              />
+              <span class="error-text">Enter a valid date of birth.</span>
+              <div class="dp-popover" id="profile-dob-popover"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field" id="profile-passport-field">
+              <label for="profile-passport">Passport number</label>
+              <input
+                type="text"
+                id="profile-passport"
+                data-testid="profile-passport"
+                placeholder="e.g. X1234567"
+              />
+              <span class="error-text">Enter a passport number.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel stack" style="margin-bottom: 16px">
+          <h2>Payment details</h2>
+          <div class="row">
+            <div class="field" id="card-name-field">
+              <label for="card-name">Name on card</label>
+              <input
+                type="text"
+                id="card-name"
+                data-testid="card-name"
+                placeholder="As shown on card"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="field" id="card-number-field">
+              <label for="card-number">Card number</label>
+              <input
+                type="text"
+                id="card-number"
+                data-testid="card-number"
+                placeholder="1234 5678 9012 3456"
+                inputmode="numeric"
+                maxlength="19"
+              />
+            </div>
+            <div class="field" id="card-expiry-field" style="max-width: 140px">
+              <label for="card-expiry">Expiry</label>
+              <input
+                type="text"
+                id="card-expiry"
+                data-testid="card-expiry"
+                placeholder="MM/YY"
+                maxlength="5"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="panel"
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 12px;
+          "
+        >
+          <button
+            type="submit"
+            class="btn btn-primary"
+            id="save-profile-btn"
+            data-testid="save-profile-btn"
+          >
+            Save changes
+          </button>
+        </div>
+      </form>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a
+          href="/terms.html"
+          target="_blank"
+          rel="noopener"
+          data-testid="footer-terms-link"
+          >Terms</a
+        >
+        <a
+          href="/fare-rules.html"
+          target="_blank"
+          rel="noopener"
+          data-testid="footer-fare-rules-link"
+          >Fare rules</a
+        >
+        <a
+          href="/partner-baggage.html"
+          target="_blank"
+          rel="noopener"
+          data-testid="footer-baggage-link"
+          >Baggage policy</a
+        >
+      </div>
+      <p class="footer-disclaimer">
+        MockJet is a fictional demo site built for test-automation practice. No
+        real flights are sold.
+      </p>
+      <p class="footer-copyright">&copy; 2026 MockJet. All rights reserved.</p>
+    </footer>
+
+    <script src="/js/state.js"></script>
+    <script src="/js/datepicker.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/account.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", renderAuthSlot);
+    </script>
+  </body>
+</html>

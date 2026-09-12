@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MockJet &mdash; Results</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">
+        <span class="brand-mark">M</span>
+        <span>
+          <span class="brand-name">MockJet</span><br />
+          <span class="header-tagline"
+            >FLIGHT SEARCH & BOOKING &mdash; DEMO</span
+          >
+        </span>
+      </a>
+      <div class="auth-area" id="auth-area" data-testid="auth-area"></div>
+    </header>
+
+    <main class="page-wrap">
+      <div class="progress-steps" data-testid="progress-steps">
+        <span class="step active" data-testid="step-search">1. Search</span>
+        <span class="sep">/</span>
+        <span class="step" data-testid="step-review">2. Review</span>
+        <span class="sep">/</span>
+        <span class="step" data-testid="step-pay">3. Pay</span>
+        <span class="sep">/</span>
+        <span class="step" data-testid="step-confirm">4. Confirmation</span>
+      </div>
+
+      <h1 id="results-heading" data-testid="results-heading">
+        Select your flight
+      </h1>
+      <p id="results-subheading" data-testid="results-subheading"></p>
+
+      <div
+        id="search-error"
+        class="panel"
+        style="display: none; border-color: var(--error)"
+        data-testid="search-error"
+      ></div>
+
+      <div class="layout-2col">
+        <aside
+          class="panel filters-panel"
+          id="filters-panel"
+          data-testid="filters-panel"
+        >
+          <div class="filter-group">
+            <h3>Stops</h3>
+            <label class="checkbox-row"
+              ><input
+                type="checkbox"
+                class="filter-stops"
+                value="0"
+                checked
+                data-testid="filter-nonstop"
+              />
+              Nonstop</label
+            >
+            <label class="checkbox-row"
+              ><input
+                type="checkbox"
+                class="filter-stops"
+                value="1"
+                checked
+                data-testid="filter-1stop"
+              />
+              1 stop</label
+            >
+            <label class="checkbox-row"
+              ><input
+                type="checkbox"
+                class="filter-stops"
+                value="2"
+                checked
+                data-testid="filter-2stop"
+              />
+              2+ stops</label
+            >
+          </div>
+          <div class="filter-group">
+            <h3>Airlines</h3>
+            <div id="airline-filters" data-testid="airline-filters"></div>
+          </div>
+          <div class="filter-group">
+            <h3>Max price</h3>
+            <input
+              type="range"
+              id="price-range"
+              min="0"
+              max="3000"
+              step="10"
+              data-testid="price-range"
+            />
+            <div
+              class="price-range-value"
+              id="price-range-value"
+              data-testid="price-range-value"
+            ></div>
+          </div>
+        </aside>
+
+        <section>
+          <div class="toolbar">
+            <span
+              class="hint"
+              id="results-count"
+              data-testid="results-count"
+            ></span>
+            <div class="field" style="max-width: 220px">
+              <label for="sort-select">Sort by</label>
+              <select id="sort-select" data-testid="sort-select">
+                <option value="price">Price (lowest)</option>
+                <option value="duration">Duration (shortest)</option>
+                <option value="departure">Departure time</option>
+              </select>
+            </div>
+          </div>
+
+          <p>
+            <a href="#" id="fare-rules-link" data-testid="fare-rules-link"
+              >View fare rules</a
+            >
+            &nbsp;&middot;&nbsp;
+            <a
+              href="/partner-baggage.html"
+              target="_blank"
+              rel="noopener"
+              data-testid="partner-baggage-link"
+              >Compare partner baggage policy &#8599;</a
+            >
+          </p>
+
+          <div id="loading-skeleton">
+            <div class="skeleton skeleton-card"></div>
+            <div class="skeleton skeleton-card"></div>
+            <div class="skeleton skeleton-card"></div>
+          </div>
+
+          <div
+            id="flight-list"
+            data-testid="flight-list"
+            style="display: none"
+          ></div>
+
+          <div
+            id="empty-state"
+            class="panel"
+            style="display: none; text-align: center"
+            data-testid="empty-state"
+          >
+            <h3>No flights match your filters</h3>
+            <p>Try widening your stops or price filters.</p>
+            <button
+              type="button"
+              class="btn btn-ghost"
+              id="reset-filters"
+              data-testid="reset-filters"
+            >
+              Reset filters
+            </button>
+          </div>
+        </section>
+      </div>
+
+      <div
+        class="selection-bar"
+        id="selection-bar"
+        style="display: none"
+        data-testid="selection-bar"
+      >
+        <div>
+          <div id="selection-label" data-testid="selection-label">
+            Select an outbound flight to continue
+          </div>
+          <div
+            class="summary"
+            id="selection-price"
+            data-testid="selection-price"
+          ></div>
+        </div>
+        <button
+          type="button"
+          class="btn btn-primary"
+          id="continue-btn"
+          data-testid="continue-to-review"
+          disabled
+        >
+          Continue to review
+        </button>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a
+          href="/terms.html"
+          target="_blank"
+          rel="noopener"
+          data-testid="footer-terms-link"
+          >Terms</a
+        >
+        <a
+          href="/fare-rules.html"
+          target="_blank"
+          rel="noopener"
+          data-testid="footer-fare-rules-link"
+          >Fare rules</a
+        >
+        <a
+          href="/partner-baggage.html"
+          target="_blank"
+          rel="noopener"
+          data-testid="footer-baggage-link"
+          >Baggage policy</a
+        >
+      </div>
+      <p class="footer-disclaimer">
+        MockJet is a fictional demo site built for test-automation practice. No
+        real flights are sold.
+      </p>
+      <p class="footer-copyright">&copy; 2026 MockJet. All rights reserved.</p>
+    </footer>
+
+    <script src="/js/state.js"></script>
+    <script src="/js/flight-card.js"></script>
+    <script src="/js/results.js"></script>
+    <script src="/js/auth.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", renderAuthSlot);
+    </script>
+  </body>
+</html>

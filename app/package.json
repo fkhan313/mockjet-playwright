@@ -1,0 +1,12 @@
+{
+  "name": "mockjet-flight-demo",
+  "version": "1.0.0",
+  "description": "A mock flight search & booking site built as a Playwright automation practice target.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

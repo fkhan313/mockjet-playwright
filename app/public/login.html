@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MockJet &mdash; Sign in</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">
+        <span class="brand-mark">M</span>
+        <span>
+          <span class="brand-name">MockJet</span><br />
+          <span class="header-tagline"
+            >FLIGHT SEARCH & BOOKING &mdash; DEMO</span
+          >
+        </span>
+      </a>
+    </header>
+
+    <main class="login-wrap">
+      <div class="auth-shell">
+        <div class="auth-card panel">
+          <div class="auth-card-header">
+            <span class="eyebrow eyebrow-soft">Member access</span>
+            <h1>Sign in</h1>
+          </div>
+          <p class="auth-intro">
+            You'll need to sign in to complete a booking. Searching and browsing
+            flights doesn't require an account.
+          </p>
+
+          <div class="credentials-hint" data-testid="test-credentials-hint">
+            <div>
+              <strong>Regular member:</strong>
+              <span class="mono">test@mockjet.dev</span> /
+              <span class="mono">Test1234!</span>
+            </div>
+            <div>
+              <strong>Silver member:</strong>
+              <span class="mono">silver@mockjet.dev</span> /
+              <span class="mono">Test1234!</span>
+            </div>
+            <div>
+              <strong>Gold member:</strong>
+              <span class="mono">gold@mockjet.dev</span> /
+              <span class="mono">Test1234!</span>
+            </div>
+            <div>
+              <strong>Locked account:</strong>
+              <span class="mono">locked@mockjet.dev</span> /
+              <span class="mono">Test1234!</span>
+            </div>
+          </div>
+
+          <div
+            id="login-error"
+            class="panel"
+            style="
+              display: none;
+              border-color: var(--error);
+              margin-bottom: 16px;
+            "
+            data-testid="login-error"
+          ></div>
+
+          <form
+            class="stack"
+            id="login-form"
+            data-testid="login-form"
+            novalidate
+          >
+            <div class="field" id="login-email-field">
+              <label for="login-email">Email</label>
+              <input
+                type="email"
+                id="login-email"
+                data-testid="login-email"
+                placeholder="you@example.com"
+                autocomplete="username"
+              />
+              <span class="error-text">Enter your email address.</span>
+            </div>
+            <div class="field" id="login-password-field">
+              <label for="login-password">Password</label>
+              <input
+                type="password"
+                id="login-password"
+                data-testid="login-password"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+              />
+              <span class="error-text">Enter your password.</span>
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary btn-block"
+              id="login-submit"
+              data-testid="login-submit"
+            >
+              Sign in
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a
+          href="/terms.html"
+          target="_blank"
+          rel="noopener"
+          data-testid="footer-terms-link"
+          >Terms</a
+        >
+        <a
+          href="/fare-rules.html"
+          target="_blank"
+          rel="noopener"
+          data-testid="footer-fare-rules-link"
+          >Fare rules</a
+        >
+        <a
+          href="/partner-baggage.html"
+          target="_blank"
+          rel="noopener"
+          data-testid="footer-baggage-link"
+          >Baggage policy</a
+        >
+      </div>
+      <p class="footer-disclaimer">
+        MockJet is a fictional demo site built for test-automation practice. No
+        real flights are sold.
+      </p>
+      <p class="footer-copyright">&copy; 2026 MockJet. All rights reserved.</p>
+    </footer>
+
+    <script src="/js/state.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/login.js"></script>
+  </body>
+</html>
