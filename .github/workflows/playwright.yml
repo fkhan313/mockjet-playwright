@@ -36,7 +36,7 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test
         env:
-          BASE_URL: http://localhost:4000
+          BASE_URL: ${{ vars.BASE_URL }}
           REGULAR_USER_EMAIL: ${{ secrets.REGULAR_USER_EMAIL }}
           REGULAR_USER_PASSWORD: ${{ secrets.REGULAR_USER_PASSWORD }}
           LOCKED_USER_EMAIL: ${{ secrets.LOCKED_USER_EMAIL }}

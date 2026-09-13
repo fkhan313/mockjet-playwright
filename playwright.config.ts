@@ -24,8 +24,9 @@ export default defineConfig({
     //   args: ["--start-maximized"],
     //   //slowMo: 500,
     // },
-    baseURL: process.env.BASE_URL || "http://localhost:4000",
+    baseURL: process.env.BASE_URL,
     trace: "on-first-retry",
+    // Line below should be removed eventually, run tests with npx playwright test --headed
     headless: !!process.env.CI,
     screenshot: "only-on-failure",
   },
