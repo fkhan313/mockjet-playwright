@@ -1,7 +1,13 @@
 import { defineConfig, devices } from "@playwright/test";
 import dotenv from "dotenv";
 import path from "path";
+
+
 dotenv.config({ path: path.resolve(__dirname, ".env") });
+
+if (!process.env.BASE_URL) {
+  throw new Error("BASE_URL is required");
+}
 
 export default defineConfig({
   testDir: "./tests",
@@ -13,14 +19,14 @@ export default defineConfig({
 
   use: {
     //viewport: { width: 1920, height: 1080 },
-    viewport: null,
-    launchOptions: {
-      args: ["--start-maximized"],
-      //slowMo: 500,
-    },
-    baseURL: process.env.BASE_URL,
+    // viewport: null,
+    // launchOptions: {
+    //   args: ["--start-maximized"],
+    //   //slowMo: 500,
+    // },
+    baseURL: process.env.BASE_URL || "http://localhost:4000",
     trace: "on-first-retry",
-    headless: false,
+    headless: !!process.env.CI,
     screenshot: "only-on-failure",
   },
 
@@ -31,8 +37,8 @@ export default defineConfig({
       name: "chromium",
       use: {
         ...devices["Desktop Chrome"],
-        viewport: null,
-        deviceScaleFactor: undefined,
+        // viewport: null,
+        // deviceScaleFactor: undefined,
       },
     },
 

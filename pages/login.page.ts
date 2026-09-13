@@ -22,7 +22,7 @@ export class LoginPage {
   }
 
   async goToLoginPage() {
-    await this.page.goto(`${process.env.BASE_URL}/login.html?redirect=%2F`);
+    await this.page.goto('/login.html?redirect=%2F');
   }
 
   async login(username: string, password: string) {
