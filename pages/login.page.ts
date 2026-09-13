@@ -21,30 +21,14 @@ export class LoginPage {
     this.authMenuTrigger = page.locator('[data-testid="auth-menu-trigger"]');
   }
 
-  async goToLoginPage() {
+  async goToLoginPage(): Promise<void> {
     await this.page.goto('/login.html?redirect=%2F');
   }
 
-  async login(username: string, password: string) {
+  async login(username: string, password: string): Promise<void> {
     await this.usernameInput.fill(username);
     await this.passwordInput.fill(password);
     await this.loginButton.click();
   }
-
-  async expectLoginSuccess() {
-  await expect(this.authMenuTrigger).toBeVisible();
-}
-
-  async expectLockedAccountError() {
-    await expect(this.lockedAccountError).toHaveText(
-    'This account is locked. Contact support to regain access.'
-  );
-}
-
-  async expectFieldError(field: 'username' | 'password', text: string) {
-    const locator = field === 'username' ? this.usernameError : this.passwordError;
-    await expect(locator).toHaveText(text);
-  }
-
 }
 
