@@ -1,21 +1,20 @@
-import { defineConfig, devices } from "@playwright/test";
-import dotenv from "dotenv";
-import path from "path";
+import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';
+import path from 'path';
 
-
-dotenv.config({ path: path.resolve(__dirname, ".env") });
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 if (!process.env.BASE_URL) {
-  throw new Error("BASE_URL is required");
+  throw new Error('BASE_URL is required');
 }
 
 export default defineConfig({
-  testDir: "./tests",
+  testDir: './tests',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: "html",
+  reporter: 'html',
 
   use: {
     //viewport: { width: 1920, height: 1080 },
@@ -25,19 +24,19 @@ export default defineConfig({
     //   //slowMo: 500,
     // },
     baseURL: process.env.BASE_URL,
-    trace: "on-first-retry",
+    trace: 'on-first-retry',
     // Line below should be removed eventually, run tests with npx playwright test --headed
     headless: !!process.env.CI,
-    screenshot: "only-on-failure",
+    screenshot: 'only-on-failure',
   },
 
   // Configure projects for major browsers
 
   projects: [
     {
-      name: "chromium",
+      name: 'chromium',
       use: {
-        ...devices["Desktop Chrome"],
+        ...devices['Desktop Chrome'],
         // viewport: null,
         // deviceScaleFactor: undefined,
       },

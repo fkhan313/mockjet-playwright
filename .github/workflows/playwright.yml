@@ -26,6 +26,9 @@ jobs:
       - name: Install test dependencies
         run: npm ci
 
+      - name: Check formatting
+        run: npm run format:check
+
       - name: Install application dependencies
         working-directory: ./app
         run: npm ci
