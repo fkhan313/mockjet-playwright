@@ -1,6 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
+import { authFiles } from './config/auth.config';
 
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
@@ -30,29 +31,75 @@ export default defineConfig({
     screenshot: 'only-on-failure',
   },
 
-  // Configure projects for major browsers
-
   projects: [
+    //==========================
     {
-      name: 'chromium',
-      use: {
-        ...devices['Desktop Chrome'],
-        // viewport: null,
-        // deviceScaleFactor: undefined,
-      },
+      name: 'regular-auth',
+      testMatch: /regular\.setup\.ts/,
     },
 
-    /* {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    }, */
+    {
+      name: 'silver-auth',
+      testMatch: /silver\.setup\.ts/,
+    },
 
-    /*{
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    }, */
+    {
+      name: 'gold-auth',
+      testMatch: /gold\.setup\.ts/,
+    },
 
-    /* Test against mobile viewports. */
+    {
+      name: 'regular-user',
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: authFiles.regular,
+      },
+      dependencies: ['regular-auth'],
+      grepInvert: /@silver|@gold/,
+    },
+
+    {
+      name: 'silver-user',
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: authFiles.silver,
+      },
+      dependencies: ['silver-auth'],
+      grep: /@silver/,
+    },
+
+    {
+      name: 'gold-user',
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: authFiles.gold,
+      },
+      dependencies: ['gold-auth'],
+      grep: /@gold/,
+    },
+
+    //==========================
+
+    // {
+    //   name: 'chromium',
+    //   use: {
+    //     ...devices['Desktop Chrome'],
+    //     // viewport: null,
+    //     // deviceScaleFactor: undefined,
+    //   },
+    // },
+
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'] },
+    // },
+
+    // /*{
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'] },
+    // },
+
+    // /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
     //   use: { ...devices['Pixel 5'] },
@@ -62,7 +109,7 @@ export default defineConfig({
     //   use: { ...devices['iPhone 12'] },
     // },
 
-    /* Test against branded browsers. */
+    // /* Test against branded browsers. */
     // {
     //   name: 'Microsoft Edge',
     //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
@@ -74,6 +121,7 @@ export default defineConfig({
   ],
 
   /* Run your local dev server before starting the tests */
+
   webServer: {
     command: 'npm run start',
     cwd: './app',

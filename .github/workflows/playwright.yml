@@ -37,11 +37,20 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Run Playwright tests
-        run: npx playwright test
+        run: >
+          npx playwright test
+          --project=regular-user
+          --project=silver-user
+          --project=gold-user
+
         env:
           BASE_URL: ${{ vars.BASE_URL }}
           REGULAR_USER_EMAIL: ${{ secrets.REGULAR_USER_EMAIL }}
           REGULAR_USER_PASSWORD: ${{ secrets.REGULAR_USER_PASSWORD }}
+          SILVER_USER_EMAIL: ${{ secrets.SILVER_USER_EMAIL }}
+          SILVER_USER_PASSWORD: ${{ secrets.SILVER_USER_PASSWORD }}
+          GOLD_USER_EMAIL: ${{ secrets.GOLD_USER_EMAIL }}
+          GOLD_USER_PASSWORD: ${{ secrets.GOLD_USER_PASSWORD }}
           LOCKED_USER_EMAIL: ${{ secrets.LOCKED_USER_EMAIL }}
           LOCKED_USER_PASSWORD: ${{ secrets.LOCKED_USER_PASSWORD }}
 

@@ -102,3 +102,9 @@ tmp/
 # Markdown docs (commit once project is complete)
 # =========================
 *.md
+
+
+# ========================
+# Auth state
+# ========================
+/auth/

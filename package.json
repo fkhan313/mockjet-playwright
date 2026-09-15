@@ -4,10 +4,14 @@
   "description": "Playwright automation framework for the MockJet flight booking application",
   "main": "index.js",
   "scripts": {
-    "test": "playwright test",
-    "test:headed": "playwright test --headed",
+    "test": "playwright test --project=regular-user",
+    "test:all": "playwright test --project=regular-user --project=silver-user --project=gold-user",
+    "test:regular": "playwright test --project=regular-user",
+    "test:silver": "playwright test --project=silver-user",
+    "test:gold": "playwright test --project=gold-user",
+    "test:headed": "playwright test --project=regular-user --headed",
     "test:ui": "playwright test --ui",
-    "test:debug": "playwright test --debug",
+    "test:debug": "playwright test --project=regular-user --debug",
     "report": "playwright show-report",
     "format": "prettier . --write",
     "format:check": "prettier . --check"

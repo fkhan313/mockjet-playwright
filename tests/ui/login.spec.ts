@@ -2,6 +2,14 @@ import { expect } from '@playwright/test';
 import { test } from '../../fixtures/pages.fixture';
 import { ValidationMessages, AccountMessages } from '../../test-data/messages';
 
+
+test.use({
+  storageState: {
+    cookies: [],
+    origins: [],
+  },
+});
+
 test.describe('Login', () => {
   test.beforeEach(async ({ loginPage }) => {
     await loginPage.goToLoginPage();
