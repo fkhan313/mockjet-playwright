@@ -10,7 +10,7 @@ export class FlightSearchPage {
   readonly departureDateInput: Locator;
   readonly departNextMonthButton: Locator;
   readonly departureDateOption: Locator;
-  readonly searchButton: Locator;  
+  readonly searchButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -29,7 +29,7 @@ export class FlightSearchPage {
     await this.page.goto('/');
   }
 
-  async searchOneWayFlight(from: string, to: string, departureDate: string): Promise<void> {
+  async searchOneWayFlight(from: string, to: string): Promise<void> {
     await this.oneWayRadio.click();
     await this.fromInput.fill(from);
     await this.fromAirportOption.click();
@@ -39,7 +39,5 @@ export class FlightSearchPage {
     await this.departNextMonthButton.click();
     await this.departureDateOption.click();
     await this.searchButton.click();
-    
-
   }
 }
